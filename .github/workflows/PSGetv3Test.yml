@@ -1,0 +1,14 @@
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  Pester:
+    runs-on: windows-latest
+    steps:
+    - shell: pwsh
+      run: |
+        Install-Module PowershellGet -AllowPrerelease -Force
+        Import-Module PowershellGet
+        Install-PSResource Pester -Prerelease
+        Invoke-Pester
